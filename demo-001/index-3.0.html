@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM install</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <script type="text/babel">
+                var names = ['ZhangShuai', 'WangSiqi', 'WangTongtong', 'LiRui'];
+                ReactDOM.render(<div>{names.map(function(name){
+                    return <h1>Hello, {name}!</h1>
+                })}
+                    </div>,
+                     document.getElementById('example'));
+        </script>
+    </div>
+</body>
+</html>
