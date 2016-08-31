@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 002</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <script type="text/babel">
+            var data = "BeiJing Cainiao";
+            var Mytitle = React.createClass({
+                getDefaultProps: function(){
+                    return{
+                        title: "HTML5",
+                    };
+                },
+                render: function(){
+                    return <h1>{this.props.title}</h1>
+                }
+            });
+            ReactDOM.render(
+                <Mytitle />,
+                document.getElementById("example")
+            );
+        </script>
+    </div>
+</body>
+</html>

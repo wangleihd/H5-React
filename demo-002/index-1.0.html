@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 002</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <script type="text/babel">
+                var HMessage = React.createClass({
+                    render: function(){
+                        return (<div><h1>Hello {this.props.name }</h1><p>
+                        this is the pages.</p></div>);
+                    }
+                });
+                ReactDOM.render(<HMessage name="Joho" />,
+                     document.getElementById('example'));
+        </script>
+    </div>
+</body>
+</html>
