@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var Hello = React.createClass({
+            getInitialState: function(){
+                return{
+                    opacity: 1.0,
+                    stats: 1
+                }
+            },
+
+            componentDidMount: function(){
+                this.timer = setInterval(function(){
+                    var opacity = this.state.opacity;
+                    var stats = this.state.stats;
+                    if(opacity <= 0.1){
+                        stats = 0;
+                    }
+                    if(opacity >= 1){
+                        stats = 1;
+                    }
+                    if(stats){
+                        opacity -= .05;
+                    } else {
+                        opacity += .05;
+                    }
+                    this.setState({
+                        opacity: opacity,
+                        stats: stats
+                    });
+                }.bind(this),100);
+            },
+
+            render: function(){
+                return (
+                    <div style={{opacity: this.state.opacity}}>
+                        <h1>Hello {this.props.name}</h1>
+                    </div>
+                )
+            }
+        });
+        ReactDOM.render(
+            <Hello name="world" />,
+            document.getElementById('example')
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+        <script type="text/babel">
+            var UserGist = React.createClass({
+                getInitialState: function(){
+                    return {
+                        username: '',
+                        lastGistUrl: ''
+                    };
+                },
+
+                componentDidMount: function(){
+                    $.get(this.props.source, function(result){
+                        var lastGistUrl = result[0];
+                        if(this.isMounted()){
+                            this.setState({
+                                username: lastGistUrl.owner.login,
+                                lastGistUrl: lastGistUrl.html_url
+                            });
+                        }
+                    }.bind(this));
+                },
+
+                render: function(){
+                    return(
+                        <div>
+                            <u>{this.state.username}</u> is last gist is <a href={this.state.lastGistUrl}>here</a>
+                        </div>
+                    );
+                }
+
+            });
+            ReactDOM.render(
+                <UserGist source="https://api.github.com/users/octocat/gists" />,
+                document.getElementById('example')
+            );
+        </script>
+</body>
+</html>
