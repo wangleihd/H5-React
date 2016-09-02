@@ -11,37 +11,47 @@
 <body>
     <div id="example"></div>
         <script type="text/babel">
-            var UserGist = React.createClass({
+            var RepoList = React.createClass({
                 getInitialState: function(){
                     return {
-                        username: '',
-                        lastGistUrl: ''
+                        loading: true,
+                        error: null,
+                        data: null
                     };
                 },
 
                 componentDidMount: function(){
-                    $.get(this.props.source, function(result){
-                        var lastGistUrl = result[0];
-                        if(this.isMounted()){
-                            this.setState({
-                                username: lastGistUrl.owner.login,
-                                lastGistUrl: lastGistUrl.html_url
-                            });
-                        }
-                    }.bind(this));
+                    this.props.promise.then(
+                        value => this.setState({loading: false, data: value}),
+                        error => this.setState({loading: false, error: error})
+                    );
                 },
 
                 render: function(){
+                    if(this.state.loading){
+                        return <span>Loading ... </span>;
+                    } else is(this.state.error !== null){
+                        return <span>Error: {this.state.error.message}</span>
+                    } else {
+                        var repos = this.state.data.items;
+                        var repoList = repos.map(function(repo, index){
+                            return (
+                                <li key={index}><a href={repo.html_url}>{repo.name}</a>
+                                ({repo.stargazers_count} stars) <br/> {repo.description}
+                                </li>
+                            );
+                        });
                     return(
-                        <div>
-                            <u>{this.state.username}</u> is last gist is <a href={this.state.lastGistUrl}>here</a>
-                        </div>
+                        <main>
+                            <h1>Most Popular JavaScript Project in Github.</h1>
+                            <ol>{RepoList}</ol>
+                        </main>
                     );
                 }
-
+            }
             });
             ReactDOM.render(
-                <UserGist source="https://api.github.com/users/octocat/gists" />,
+                <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars') />,
                 document.getElementById('example')
             );
         </script>
