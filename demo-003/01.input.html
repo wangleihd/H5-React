@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script type="text/babel">
+        var GenderSelect = React.createClass({
+            render: function(){
+                return <select onChange={this.props.handleSelect}>
+                <option value="0">男</option>
+                <option value="1">女</option></select>
+            }
+        });
+
+        var SingUp = React.createClass({
+             
+        })
+        ReactDOM.render(<ChangeColor></ChangeColor>, document.body);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
