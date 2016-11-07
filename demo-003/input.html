@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <script type="text/babel">
+            var Hello = React.createClass({
+                render: function(){
+                    return <p>Hello, {this.props.name + ' ' + this.props.age}</p>;
+                },
+            });
+            var MyComponent = React.createClass({
+                getInitialState: function(){
+                    return {
+                        name: 'Tim',
+                        age: '21',
+                    };
+                },
+                handleChange: function(event){
+                    this.setState({name: event.target.value});
+                },
+                render: function(){
+                    return <div>
+                    <Hello {...this.state}></Hello>
+                    <br/>
+                    <input type="text" onChange = {this.handleChange} />
+                    </div>
+                }
+        });
+        ReactDOM.render(
+            <MyComponent />,
+            document.getElementById('example')
+        );
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script type="text/babel">
+        var ChangeColor = React.createClass({
+            getInitialState: function(){
+                return {
+                    backgroundColor: '#FFFFFF'
+                };
+            },
+            handleWheel: function(event){
+                var newColor = (parseInt(this.state.backgroundColor.substr(1), 16) + event.deltaY * 997).toString(16);
+                newColor = '#' + newColor.substr(newColor.length - 6).toUpperCase();
+                this.setState({
+                    backgroundColor: newColor
+                });
+            },
+            render: function(){
+                return <div onWheel={this.handleWheel} style = {this.state}>
+                <h1>北京菜鸟在线</h1>
+                </div>;
+            },
+        });
+        ReactDOM.render(<ChangeColor></ChangeColor>, document.body);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

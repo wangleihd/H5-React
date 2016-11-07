@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script type="text/babel">
+        var Content = React.createClass({
+            getInitialState: function(){
+                return {
+                    inputText: "",
+                };
+            },
+            btnSubmit: function(){
+                console.log("reply To:" + this.pros.selectName + "\n" + this.state.inputText);
+            },
+            handleInput : function(){
+
+            },
+            render: function(){
+                return <div><textarea onChange={this.handleInput} placeholder="Please enter something..."></textarea></div>
+                <div><button onClick = {this.btnSubmit}>提交</button></div>
+            },
+        });
+
+        var Comment = React.createClass({
+            getInitialState: function(){
+                return {
+                names: ["Tim", "John", "Mark", "Luck"],
+                selectName: 'Tim',
+                };
+            },
+            handleSelect: function(){
+                this.setState({selectName: this.state.names[event.target.value]});
+            },
+            render: function(){
+                var options = [];
+                for (var option in this.state.names){
+                    options.push(<option value={option}>{this.state.names[option]}</option>)
+                };
+                return <div>
+                <select onChange={this.handleSelect}>
+                    {options}
+                </select>
+                <Content selectName={this.state.selectName}></Content>
+                </div>;
+            },
+        });
+
+        ReactDOM.render(<Comment></Comment>, document.body);
+    </script>
+</head>
+<body>
+    <div class="input">
+
+    </div>
+</body>
+</html>

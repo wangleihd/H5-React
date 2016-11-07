@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script type="text/babel">
+        var MouseMove = React.createClass({
+            getInitialState: function(){
+                return {
+                    x: 0,
+                    y: 0
+                };
+            },
+            handleMouseMove: function(event){
+                this.setState({
+                    x: event.clientX,
+                    y: event.clientY
+                });
+            },
+            render: function(){
+                return <div onMouseMove={this.handleMouseMove} style={{
+                    height: '1000px',
+                    width: '700px',
+                    backgroundColor: 'gray',
+                    color: 'white'
+                }}>
+                <h1>{this.state.x + ' , ' + this.state.y}</h1>
+                </div>;
+            },
+        });
+        ReactDOM.render(<MouseMove></MouseMove>, document.body);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
