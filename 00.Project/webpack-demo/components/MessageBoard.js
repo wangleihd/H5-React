@@ -2,9 +2,9 @@ var React = require('react');
 
 var MessageBoard = React.createClass({
     render: function(){
-        <div>
+      return  <div>
             <h1>{this.props.title}</h1>
-        </div>
+        </div>;
     }
 })
 module.exports = MessageBoard;

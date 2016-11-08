@@ -5,3 +5,4 @@ coverage
 .swp
 npm-debug.log
 object
+bundle.js
