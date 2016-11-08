@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script type="text/babel">
+        var FormInput = React.createClass({
+            submitHandler: function(event){
+                event.preventDefault();
+                var helloTo = ReactDOM.findDOMNode(this.refs.helloTo).value;
+                alert(helloTo);
+            },
+            render: function(){
+                return <form onSubmit={this.submitHandler}>
+                    <input type="text" ref="helloTo" defaultValue="Hello World!"/>
+                    <br/>
+                    <button type="submit">Submit</button>
+                </form>;
+            }
+        });
+        ReactDOM.render(<FormInput></FormInput>, document.body);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

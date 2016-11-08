@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React DEOM 003</title>
+    <script src='../build/react.min.js'></script>
+    <script src='../build/react-dom.js'></script>
+    <script src="../build/browser.min.js"></script>
+    <script type="text/babel">
+        var BindMixin = {
+            handleChange: function(key){
+                var that = this
+                var newState ={}
+                return function(event){
+                    newState[key]=event.target.value
+                    that.setState(newState)
+                }
+            }
+        }
+        var BindMin = React.createClass({
+            mixins: [BindMixin],
+            getInitialState: function(){
+                return {
+                    text: ''
+                }
+            },
+            render: function(){
+                return <div>
+                <input type="text" placeholder="请输入内容" onChange={this.handleChange('text')} />
+                <p>{this.state.text}</p>
+                </div>
+            }
+        })
+
+        ReactDOM.render(<BindMin></BindMin>, document.body);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
