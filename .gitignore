@@ -6,3 +6,4 @@ coverage
 npm-debug.log
 object
 bundle.js
+renode.js/logs
